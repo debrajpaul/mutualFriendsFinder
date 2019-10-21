@@ -49,6 +49,12 @@ CONSUMER_KEY=******************
 CONSUMER_SECRET=**************************************
 ```
 
+## Deployment instructions:-
+
+    In terminal go to your project directory
+    * Type "npm run watch"
+    * Import the postman link:- https://www.getpostman.com/collections/4dcef3852aca81c9633e
+
 ## test curl
 
 ```
@@ -62,12 +68,6 @@ curl -X POST \
 	"authTokenSecret": ["yS37D7pWzWKe5gkOIq629V2AkUudPuoA3Ys0i6q9fbKGT","yS37D7pWzWKe5gkOIq629V2AkUudPuoA3Ys0i6q9fbKGT"]
 }'
 ```
-
-## Deployment instructions:-
-
-    In terminal go to your project directory
-    * Type "npm run watch"
-    * Import the postman link:- https://www.getpostman.com/collections/4dcef3852aca81c9633e
 
 ## Who do I talk to?
 
