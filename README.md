@@ -49,6 +49,20 @@ CONSUMER_KEY=******************
 CONSUMER_SECRET=**************************************
 ```
 
+## test curl
+
+```
+curl -X POST \
+  http://localhost:7021/interest-graph-service/twitter-crawler \
+  -H 'Content-Type: application/json' \
+  -H 'Postman-Token: 6ab6666a-473e-4e1b-a5a6-8f4f712143a9' \
+  -H 'cache-control: no-cache' \
+  -d '{
+	"authToken": ["1070020496094195712-2Iaor2P26zDSqd3JyPGBgYVmZfs7Gk","1070020496094195712-2Iaor2P26zDSqd3JyPGBgYVmZfs7Gk"],
+	"authTokenSecret": ["yS37D7pWzWKe5gkOIq629V2AkUudPuoA3Ys0i6q9fbKGT","yS37D7pWzWKe5gkOIq629V2AkUudPuoA3Ys0i6q9fbKGT"]
+}'
+```
+
 ## Deployment instructions:-
 
     In terminal go to your project directory
