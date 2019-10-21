@@ -8,7 +8,7 @@ Following steps are necessary to get your application up and running.
 
     Chatapp interface.
 
-    Version:- chatapp_1.1.0
+    Version:- 1.0
     Git clone :-https://github.com/debrajpaul/mutualFriendsFinder.git
 
 ## How do I get set up?
@@ -26,6 +26,28 @@ Following steps are necessary to get your application up and running.
     All dependencies are listed in package.json file
     * In terminal go to your project directory
     * In terminal type "npm i" to add all dependencies.
+
+## .env file
+
+```
+PORT=7021
+DEBUG=app,app:*
+PROTOCOL=http
+
+# mongo credential
+MONGO_HOST=127.0.0.1
+MONGO_PORT=27017
+MONGO_DB=mutualFriendService
+MONGO_USERNAME=
+MONGO_PASSWORD=
+
+# Unique key to store into the DB
+KEY=5dad3e3b2b570f1c40a91ec6
+
+# Twitter credential
+CONSUMER_KEY=******************
+CONSUMER_SECRET=**************************************
+```
 
 ## Deployment instructions:-
 

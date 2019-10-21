@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/debrajpaul/mutualFriendsFinder#readme",
     "dependencies": {
+        "@types/twit": "^2.2.23",
         "ajv": "^6.5.3",
         "cors": "^2.8.4",
         "debug": "^4.1.1",
@@ -28,6 +29,7 @@
         "express": "^4.16.3",
         "helmet": "^3.15.1",
         "mongodb": "^3.1.8",
+        "twit": "^2.2.11",
         "uuid": "^3.3.2"
     },
     "devDependencies": {

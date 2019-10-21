@@ -199,4 +199,52 @@ interestGraphRouter.post(
     }
 );
 
+/**
+ * User info
+ * @function
+ * @memberof module:Routes
+ * @name User_twitter_crawler
+ * @bodyparam access_token (google token)
+ * @headerparam access_token (users token)
+ * @description To crawl user google page
+ * @route {POST} /user-twitter-crawler
+ * @example <caption>Example request body:</caption>
+{
+	"access_token":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+}
+ * @example <caption>Example Success response:</caption>
+{
+    "n": 1,
+    "nModified": 1,
+    "ok": 1,
+    "success": true,
+    "message": "successful google crawling"
+}
+* @example <caption>Example Error response:</caption>
+{
+    "success": false,
+    "message": {
+        "errorMessage": "Invalid google access_token! Please go through the checked list",
+        "date": "2019-01-17T11:53:53.856Z"
+    }
+}
+ * */
+interestGraphRouter.post("/twitter-crawler", async (req, res) => {
+    try {
+        let { authToken, authTokenSecret } = req.body;
+        res.json(
+            success(
+                "successfully login",
+                await mutualTreeService.twitterCrawler(
+                    authToken,
+                    authTokenSecret
+                )
+            )
+        );
+    } catch (ex) {
+        log("app:main-router", ex);
+        res.status(417).json(fail(ex.data));
+    }
+});
+
 export default interestGraphRouter;

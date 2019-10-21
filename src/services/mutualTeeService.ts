@@ -4,6 +4,7 @@ import connect from "../utils/dbc";
 import { ObjectId } from "mongodb";
 import Graph from "../providers/graph";
 import CustomError from "./custom-error";
+import { twitterCrawler } from "../utils/twitter-crawler";
 
 let { KEY } = process.env;
 if (!KEY) {
@@ -157,6 +158,83 @@ export default class MutualTreeService {
             }
             const friendOne_friends = graph.search(friendOne);
             const friendTwo_friends = graph.search(friendTwo);
+            const mergeArray = [...friendOne_friends, ...friendTwo_friends];
+            const mutual_friends = mergeArray.filter(
+                (v, i) => mergeArray.indexOf(v) !== i
+            );
+            return {
+                result: {
+                    friendOne_friends,
+                    friendTwo_friends,
+                    mutual_friends
+                }
+            };
+        } catch (ex) {
+            throw ex;
+        }
+    };
+
+    /**
+     * @function
+     * @instance
+     * @memberof Borrower
+     * @name signUpWithTwitterDev
+     * @param { String } access_token twitter access token by end_user
+     * @param { Object } authenticUser authentic User to access this function
+     * @returns success Object or error object.
+     * @description crawler for twitter.
+     */
+    twitterCrawler = async (
+        twitter_access_token: Array<string>,
+        twitter_access_token_secret: Array<string>
+    ) => {
+        try {
+            // first user
+            const first = await twitterCrawler(
+                twitter_access_token[0],
+                twitter_access_token_secret[0],
+                "friends/list"
+            );
+
+            // API record status checking here
+            if (!first || first.length === 0) {
+                log(
+                    "app:MutualTreeService:twitterCrawler",
+                    "Your Twitter account privacy settings do not allow us to connect. Please review your permission",
+                    first
+                );
+                throw new CustomError(
+                    "app:MutualTreeService:twitterCrawler",
+                    "Your Twitter account privacy settings do not allow us to connect. Please review your permission"
+                );
+            }
+            // second user
+            const second = await twitterCrawler(
+                twitter_access_token[1],
+                twitter_access_token_secret[1],
+                "friends/list"
+            );
+
+            // API record status checking here
+            if (!second || second.length === 0) {
+                log(
+                    "app:MutualTreeService:twitterCrawler",
+                    "Your Twitter account privacy settings do not allow us to connect. Please review your permission",
+                    second
+                );
+                throw new CustomError(
+                    "app:MutualTreeService:twitterCrawler",
+                    "Your Twitter account privacy settings do not allow us to connect. Please review your permission"
+                );
+            }
+            let friendOne_friends: Array<string> = [];
+            first.users.map((d: any) => {
+                return friendOne_friends.push(d.screen_name);
+            });
+            let friendTwo_friends: Array<string> = [];
+            second.users.map((d: any) => {
+                return friendTwo_friends.push(d.screen_name);
+            });
             const mergeArray = [...friendOne_friends, ...friendTwo_friends];
             const mutual_friends = mergeArray.filter(
                 (v, i) => mergeArray.indexOf(v) !== i
