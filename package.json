@@ -22,7 +22,7 @@
     "homepage": "https://github.com/debrajpaul/mutualFriendsFinder#readme",
     "dependencies": {
         "@types/twit": "^2.2.23",
-        "ajv": "^6.5.3",
+        "ajv": "^6.12.3",
         "cors": "^2.8.4",
         "debug": "^4.1.1",
         "dotenv": "^6.0.0",
